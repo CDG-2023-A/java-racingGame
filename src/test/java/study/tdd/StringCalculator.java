@@ -1,6 +1,5 @@
 package study.tdd;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class StringCalculator {
@@ -11,22 +10,33 @@ public class StringCalculator {
     public StringCalculator() { }
     public StringCalculator(String text) {
         this.text = text;
-        StringParser stringParser = new StringParser();
-        List<String> parseText = stringParser.parse(text);
     }
 
     public String getText() {
         return text;
     }
 
-    public int calculate(String text) {
-        String[] values = text.split(" ");
-        // 0번째 인덱스에 있는 숫자만 넣어준다.
-        int number = Integer.parseInt(values[0]);
+    public void exception(String text) {
+        List<String> values = stringParser.parse(text);
 
-        for (int i = 1; i < values.length; i += 2) {
-            String operator = values[i];
-            int operand = Integer.parseInt(values[i+1]);
+        for (int i = 1; i < values.size(); i += 2) {
+
+            String operator = values.get(i);
+            int operand = Integer.parseInt(values.get(i + 1));
+
+            if (operator.equals("/") && operand == 0) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+    public int calculate(String text) {
+        List<String> values = stringParser.parse(text);
+        int number = Integer.parseInt(values.get(0));
+
+        for (int i = 1; i < values.size(); i += 2) {
+
+            int operand = Integer.parseInt(values.get(i + 1));
+            String operator = values.get(i);
 
             if(operator.equals("+"))
                 number += operand;
@@ -35,9 +45,6 @@ public class StringCalculator {
             else if (operator.equals("*"))
                 number *= operand;
             else if (operator.equals("/")) {
-                if (operand == 0) {
-                    throw new IllegalArgumentException();
-                }
                 number /= operand;
             }
         }

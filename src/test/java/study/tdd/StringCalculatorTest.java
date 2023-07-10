@@ -27,4 +27,14 @@ public class StringCalculatorTest {
 
         Assertions.assertThat(parser).isEqualTo(stringList);
     }
+
+    @Test
+    public void 숫자_0으로_나누면_IllegalArgumentException() {
+        String input = "2 + 3 * 4 / 0";
+
+        Assertions.assertThatThrownBy(() -> {
+            StringCalculator stringCalculator = new StringCalculator();
+            stringCalculator.calculate(input);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }

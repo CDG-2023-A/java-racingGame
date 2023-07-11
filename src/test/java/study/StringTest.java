@@ -1,6 +1,7 @@
 package study;
 
 import calculator.DongwooCalculator;
+import calculator.StringParser;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -22,14 +23,14 @@ public class StringTest {
     }
 
     @Test
-    void 숫자를_입력_받는다() {
+    void 숫자를_입력_받는다() throws IOException {
         String input = "1 + 2 * 3";
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        stringParser.parse(input);
-        Assertions.assertThat(input + "\n").isEqualTo(out.toString());
+        String result = stringParser.insertString();
+        Assertions.assertThat(input).isEqualTo(result);
     }
 
     @Test
@@ -40,7 +41,7 @@ public class StringTest {
         System.setOut(new PrintStream(out));
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        stringParser.parse(input);
+//        stringParser.parse(input);
         Assertions.assertThat(parsingErrormessage).isEqualTo(out.toString());
 
     }

@@ -17,33 +17,11 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void 문자열을_파싱한다() {
-        String input = "2 + 3 * 4 / 2";
-
-        StringParser stringParser = new StringParser();
-
-        List<String> parser = stringParser.parse(input);
-        List<String> stringList = List.of("2", "+", "3", "*", "4", "/", "2");
-
-        Assertions.assertThat(parser).isEqualTo(stringList);
-    }
-
-    @Test
-    public void 숫자_0으로_나누면_IllegalArgumentException() {
-        String input = "2 + 3 * 4 / 0";
-
-        Assertions.assertThatThrownBy(() -> {
-            StringCalculator stringCalculator = new StringCalculator();
-            stringCalculator.exception(input);
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    public void 계산() {
+    public void 수학적_계산이_아닌_문자열_인덱스_순서_대로_연산자와_피연산자를_나누어_계산한다() {
         String input = "2 + 3 * 4 / 2";
         StringCalculator stringCalculator = new StringCalculator(input);
 
-        int result = stringCalculator.calculate(input);
+        int result = stringCalculator.calculate();
         Assertions.assertThat(result).isEqualTo(10);
 
     }

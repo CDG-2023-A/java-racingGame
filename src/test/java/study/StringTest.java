@@ -1,5 +1,6 @@
 package study;
 
+import calculator.Calculator;
 import calculator.DongwooCalculator;
 import calculator.StringParser;
 import org.assertj.core.api.Assertions;
@@ -10,19 +11,20 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class StringTest {
 
-    private static DongwooCalculator dwCalculator;
     private static StringParser stringParser;
-    private static final String parsingErrormessage = "올바른 계산식을 입력해주세요.\n";
+    private static Calculator calculator;
 
     @BeforeAll
     static void init() {
-        dwCalculator = new DongwooCalculator();
         stringParser = new StringParser();
+        calculator = new Calculator();
     }
 
     @Test
@@ -64,14 +66,9 @@ public class StringTest {
 
     @Test
     void 연산을_수행할_수_있다() {
-
-        String invalidInput = "1 + 2 * 3";
-        InputStream in = new ByteArrayInputStream(invalidInput.getBytes(StandardCharsets.UTF_8));
-        System.setIn(in);
-
-        int expect = calculator.calculate();
-
-        assertEquals(expect, 9);
+        List<String> parsingResult = Arrays.asList("4", "*", "2", "+", "5", "-", "3");
+        double expect = calculator.calculate(parsingResult);
+        assertEquals(10.0, expect);
     }
 
 

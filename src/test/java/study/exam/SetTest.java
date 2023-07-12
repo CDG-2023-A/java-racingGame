@@ -17,7 +17,7 @@ public class SetTest {
     private Set<Integer> numbers;
 
     @BeforeEach
-    @DisplayName("HashSet에 값을 추가해주는 메소드 (값 중복 X)")
+    @DisplayName("HashSet에 값을 추가한다.")
     void setUp() {
         numbers = new HashSet<>();
         numbers.add(1);
@@ -27,14 +27,14 @@ public class SetTest {
     }
 
     @Test
-    @DisplayName("집합의 크기를 확인하는 테스트")
+    @DisplayName("집합의 크기를 확인할 수 있다.")
     void setSize() {
         int result = numbers.size();
         assertEquals(result, 3); // Set은 중복을 허용하지 않는다.
     }
 
     @Test
-    @DisplayName("집합에 값이 포함되어있는지 비교하는 테스트")
+    @DisplayName("집합에 값이 포함되어있는지 비교할 수 있다.")
     void compareContains() {
         numbers = new HashSet<>();
 
@@ -50,7 +50,7 @@ public class SetTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
-    @DisplayName("중복되지 않게 ParameterizedTest로 contains를 실행하는 코드를 한 줄로 줄인 테스트")
+    @DisplayName("ValueSource를 사용해 입력 받은 숫자가 각각 numbers에 포함되는지 확인한다.")
     void compareContains(int value) {
         numbers = new HashSet<>();
 
@@ -70,7 +70,7 @@ public class SetTest {
             "4, false",
             "5, false"
     })
-    @DisplayName("CsvSource로 true 값만 비교하는 것이 아닌 false 값도 비교해보는 테스트")
+    @DisplayName("CsvSource로 true 값만 비교하는 것이 아닌 false 값도 비교할 수 있다.")
     void compareContains(int value, boolean expected) {
         numbers = new HashSet<>();
 

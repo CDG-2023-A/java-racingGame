@@ -8,14 +8,11 @@ import java.util.List;
 public class StringParserTest {
 
     @Test
-    public void 문자열을_파싱한다() {
+    public void 하나의_문자열을_파싱해서_String_배열로_만든다() {
         String input = "2 + 3 * 4 / 2";
 
-        StringParser stringParser = new StringParser();
-
-        List<String> parser = stringParser.parse(input);
         List<String> stringList = List.of("2", "+", "3", "*", "4", "/", "2");
 
-        Assertions.assertThat(parser).isEqualTo(stringList);
+        Assertions.assertThat(StringParser.parse(input)).isEqualTo(stringList);
     }
 }

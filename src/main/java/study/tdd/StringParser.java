@@ -4,7 +4,7 @@ import java.util.List;
 
 public class StringParser {
 
-    public StringParser() { }
+    private StringParser() { }
 
     static List<String> parse(String input) {
         return List.of(input.split(" "));

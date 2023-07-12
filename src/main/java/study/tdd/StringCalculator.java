@@ -4,18 +4,13 @@ import java.util.List;
 
 public class StringCalculator {
 
+    private StringCalculator() { }
 
-    private static String text;
-
-    public StringCalculator(String text) {
-        this.text = text;
-    }
-
-    public String getText() {
+    public static String getText(String text) {
         return text;
     }
 
-    static int calculate() {
+    static int calculate(String text) {
         List<String> values = StringParser.parse(text);
         int number = Integer.parseInt(values.get(0));
 

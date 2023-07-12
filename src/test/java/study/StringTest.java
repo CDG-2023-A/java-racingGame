@@ -11,8 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StringTest {
 
@@ -63,7 +62,17 @@ public class StringTest {
 
     }
 
+    @Test
+    void 연산을_수행할_수_있다() {
 
+        String invalidInput = "1 + 2 * 3";
+        InputStream in = new ByteArrayInputStream(invalidInput.getBytes(StandardCharsets.UTF_8));
+        System.setIn(in);
+
+        int expect = calculator.calculate();
+
+        assertEquals(expect, 9);
+    }
 
 
 }

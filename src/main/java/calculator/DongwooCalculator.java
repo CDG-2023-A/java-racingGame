@@ -13,9 +13,6 @@ public class DongwooCalculator {
 
         List<String> parsingResult = stringParser.getParsingResult();
 
-        for(int i = 0; i < parsingResult.size(); i++) {
-            System.out.println(parsingResult.get(i));
-        }
 
     }
 

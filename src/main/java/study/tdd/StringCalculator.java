@@ -5,11 +5,6 @@ import java.util.List;
 public class StringCalculator {
 
     private StringCalculator() { }
-
-    public static String getText(String text) {
-        return text;
-    }
-
     static int calculate(String text) {
         List<String> values = StringParser.parse(text);
         int number = Integer.parseInt(values.get(0));

@@ -16,15 +16,15 @@ public class StringParser {
 
     }
 
-    private static void insertTokens(StringTokenizer st, ArrayList tokens) {
+    private static void insertTokens(StringTokenizer st, ArrayList tokens) {  //ArrayList에 token 넣기
         while(st.hasMoreTokens()){
             String token = st.nextToken();
-            classifyToken(tokens, token);   // 타입에 따라 token 분류
+            classifyToken(tokens, token);
         }
 
     }
 
-    private static void classifyToken(ArrayList tokens, String token) {
+    private static void classifyToken(ArrayList tokens, String token) {  //타입에 따른 token 분류
         if (isNumeric(token)) {
             tokens.add(Integer.parseInt(token));  // 숫자인 경우 int로 변환하여 추가
         } else {

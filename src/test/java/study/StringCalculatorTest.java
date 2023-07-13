@@ -64,4 +64,14 @@ public class StringCalculatorTest {
         //then
         assertThat(result).isEqualTo(10);
     }
+
+    @Test
+    void 계산_결과를_반환한다() {  //반환하는 역할을 하는 친구를 쪼개야 하는걸까?..
+        //given
+
+        //when
+
+        //then
+    }
+
 }

@@ -1,4 +1,4 @@
-package study.tdd;
+package study.stringcalculator;
 
 import java.util.List;
 

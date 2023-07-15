@@ -1,4 +1,4 @@
-package study.tdd;
+package study.stringcalculator;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

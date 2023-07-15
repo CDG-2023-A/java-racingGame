@@ -1,10 +1,7 @@
-package study.tdd;
+package study.stringcalculator;
 
 import org.assertj.core.api.Assertions;
-import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 public class StringCalculatorTest {
 
@@ -12,7 +9,7 @@ public class StringCalculatorTest {
     public void 문자열을_입력받는다() {
         String input = "2 + 3 * 4 / 2";
 
-        Assertions.assertThat(StringCalculator.getText(input));
+        Assertions.assertThat(StringCalculator.calculate(input));
     }
 
     @Test

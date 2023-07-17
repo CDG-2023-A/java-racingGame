@@ -5,7 +5,7 @@ import java.util.List;
 public class StringCalculator {
 
     private StringCalculator() { }
-    static int calculate(String text) {
+    public static int calculate(String text) {
         List<String> values = StringParser.parse(text);
         int number = Integer.parseInt(values.get(0));
 

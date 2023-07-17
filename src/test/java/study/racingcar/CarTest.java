@@ -2,12 +2,20 @@ package study.racingcar;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
+import study.stringcalculator.StringCalculator;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.HashSet;
 import java.util.Scanner;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
 
@@ -43,5 +51,12 @@ public class CarTest {
         Assertions.assertThat(getOutput()).contains("3");
     }
 
+    @Test
+    public void 시도할_횟수를_입력받는다() {
+        String input = "5";
+        systemIn(input);
+        test();
 
+        Assertions.assertThat(getOutput()).contains("5");
+    }
 }

@@ -1,8 +1,6 @@
 package study.racingcar.view;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class ResultView {
     public static void printRaceResult(List<Integer> positions) {

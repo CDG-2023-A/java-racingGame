@@ -1,44 +1,46 @@
 package study.racingcar;
 
 import org.junit.jupiter.api.Test;
-import study.racingcar.model.Car;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static study.racingcar.controller.CarController.raceStart;
+import static study.racingcar.model.Car.requestCarsToMove;
 
 public class CarTest {
 
-    private static final int POSITIONS_INDEX = 0;
+    private static final int MAX_BOUNDARY_OF_RANDOM_CAR_NUMBER = 5;
+    private static final int MAX_BOUNDARY_OF_RANDOM_ATTEMPT_NUMBER = 3;
     @Test
-    public void 자동차_대수와_시도_횟수를_1로_정해준_뒤_이동_로직을_확인한다() {
-        int carNum = 1;
-        int attemptNum = 1;
-        List<Integer> positions = new ArrayList<>();
+    public void 자동차_이동_로직을_확인한다() {
+        // given
+        Random random = new Random();
+        int carNum = random.nextInt(MAX_BOUNDARY_OF_RANDOM_CAR_NUMBER + 1); // 1 ~ 5
+        int attemptNum = random.nextInt(MAX_BOUNDARY_OF_RANDOM_ATTEMPT_NUMBER + 3); // 3 ~ 5
 
-        Car car = new Car(carNum, positions);
-        car.raceStart(carNum, attemptNum);
+        // when
+        List<Integer> finalPositions = raceStart(carNum, attemptNum);
 
-        int carPosition = 0;
-
-        for (int i = 0; i < positions.size(); i++) {
-            carPosition = positions.get(i);
-        }
-
-        assertEquals(carPosition >= 0 && carPosition <= 1, true);
+        // then
+        assertEquals(carNum, finalPositions.size());
     }
 
     @Test
-    public void 자동차_대수를_1대로_정해준_뒤_전진_로직을_확인한다() {
-        int carNum = 1;
+    public void 자동차_전진_로직을_확인한다() {
+        // given
+        Random random = new Random();
+        int carNum = random.nextInt(MAX_BOUNDARY_OF_RANDOM_CAR_NUMBER + 1); // 1 ~ 5
         List<Integer> positions = new ArrayList<>();
 
-        Car car = new Car(carNum, positions);
-        car.requestCarsToMove(carNum, positions);
+        // when
+        List<Integer> checkForward = requestCarsToMove(carNum, positions);
 
-        int carPosition = positions.get(POSITIONS_INDEX);
-
-        assertEquals(carPosition == 0 || carPosition == 1, true);
+        // then
+        for (int i = 0 ; i < carNum; i++) {
+            assertEquals(checkForward.get(i) == 0 || checkForward.get(i) == 1, true);
+        }
     }
 }

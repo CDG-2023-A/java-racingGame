@@ -1,5 +1,6 @@
 package study.racingcar.controller;
 
+import study.racingcar.model.Car;
 import study.racingcar.view.InputView;
 import study.racingcar.view.ResultView;
 
@@ -10,29 +11,26 @@ import static study.racingcar.model.Car.requestCarsToMove;
 
 public class CarController {
     public CarController() {
-        raceStart(InputView.getCarNumber(), InputView.getAttemptNumber());
+        List<Car> carList = addCar(InputView.getCarNumber());
+        raceStart(InputView.getCarNumber(), InputView.getAttemptNumber(), carList);
     }
 
-    public static List<Integer> raceStart(int carNum, int attemptNum) {
-        List<Integer> startLine = addCar(carNum);
-        List<Integer> finalPositions = new ArrayList<>();
-
+    public static void raceStart(int carNum, int attemptNum, List<Car> carList) {
         for (int i = 0; i < attemptNum; i++) {
-            List<Integer> racingCar = requestCarsToMove(carNum, startLine);
+            List<Car> racingCar = requestCarsToMove(carNum, carList);
             ResultView.printRaceResult(racingCar);
-            System.out.println("");
-            finalPositions = new ArrayList<>(racingCar);
         }
-        return finalPositions;
     }
 
-    private static List<Integer> addCar(int carNum) {
-        List<Integer> positions = new ArrayList<>();
+    public static List<Car> addCar(int carNum) {
+        List<Car> carList = new ArrayList<>();
 
         for (int i = 0; i < carNum; i++) {
-            positions.add(i,0);
+            Car car = new Car(0);
+
+            carList.add(i, car);
         }
 
-        return positions;
+        return carList;
     }
 }
